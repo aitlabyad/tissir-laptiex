@@ -15,7 +15,7 @@
 
         {{-- Fonts --}}
         {{ Metronic::getGoogleFontsInclude() }}
-
+        
         {{-- Global Theme Styles (used by all pages) --}}
         @foreach(config('layout.resources.css') as $style)
             <link href="{{ config('layout.self.rtl') ? asset(Metronic::rtlCssPath($style)) : asset($style) }}" rel="stylesheet" type="text/css"/>
@@ -28,6 +28,8 @@
 
         {{-- Includable CSS --}}
         @yield('styles')
+
+        
     </head>
 
     <body {{ Metronic::printAttrs('body') }} {{ Metronic::printClasses('body') }}>
@@ -52,6 +54,7 @@
 
         {{-- Includable JS --}}
         @yield('scripts')
+        @include('inc.notification')
 
     </body>
 </html>

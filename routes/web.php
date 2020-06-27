@@ -27,3 +27,4 @@ Route::get('/quick-search', 'PagesController@quickSearch')->name('quick-search')
 
 
 Route::resource('Products', 'ProductsController');
+Route::post('/Products/look', 'ProductsController@look');

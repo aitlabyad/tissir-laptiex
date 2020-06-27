@@ -20,7 +20,7 @@
                 </div>
                 <!--end::Dropdown-->
                 <!--begin::Button-->
-                <a href="Products/create" class="btn btn-primary font-weight-bolder">
+                <a href="http://tissir.cc/Products/create" class="btn btn-primary font-weight-bolder">
                 <span class="svg-icon svg-icon-md">
                     <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -38,52 +38,35 @@
 
         <div class="card-body">
 
-            <!--begin::Search Form-->
-            <div class="mt-2 mb-5 mt-lg-5 mb-lg-10">
+              <!--begin::Search Form-->
+              {!! Form::open(['action' => 'ProductsController@look', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+              <div class="mt-2 mb-5 mt-lg-5 mb-lg-10">
                 <div class="row align-items-center">
                     <div class="col-lg-9 col-xl-8">
                         <div class="row align-items-center">
                             <div class="col-md-4 my-2 my-md-0">
                                 <div class="input-icon">
-                                    <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query"/>
+                                    {{Form::text('look_for', '', ['class' => 'form-control form-control-solid','placeholder' => 'Search...','id'=>'kt_datatable_search_query'])}}
+                               
                                     <span><i class="flaticon2-search-1 text-muted"></i></span>
                                 </div>
                             </div>
 
                             <div class="col-md-4 my-2 my-md-0">
-                                <div class="d-flex align-items-center">
-                                    <label class="mr-3 mb-0 d-none d-md-block">Status:</label>
-                                    <select class="form-control" id="kt_datatable_search_status">
-                                        <option value="">All</option>
-                                        <option value="1">Pending</option>
-                                        <option value="2">Delivered</option>
-                                        <option value="3">Canceled</option>
-                                        <option value="4">Success</option>
-                                        <option value="5">Info</option>
-                                        <option value="6">Danger</option>
-                                    </select>
-                                </div>
+                                {{Form::submit('Search', ['class'=>'btn btn-light-primary px-6 font-weight-bold'])}}
+                               
                             </div>
                             <div class="col-md-4 my-2 my-md-0">
-                                <div class="d-flex align-items-center">
-                                    <label class="mr-3 mb-0 d-none d-md-block">Type:</label>
-                                    <select class="form-control" id="kt_datatable_search_type">
-                                        <option value="">All</option>
-                                        <option value="1">Online</option>
-                                        <option value="2">Retail</option>
-                                        <option value="3">Direct</option>
-                                    </select>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
-                        <a href="#" class="btn btn-light-primary px-6 font-weight-bold">
-                            Search
-                        </a>
+                        
                     </div>
                 </div>
             </div>
+            {!! Form::close() !!}
             <!--end::Search Form-->
 
             <table class="table table-bordered table-hover" id="kt_datatable">
@@ -129,9 +112,75 @@
                 </tbody>
             </table>
 
+
+            
+
+
         </div>
 
     </div>
+
+
+
+
+    @if( count($productE) > 0)
+
+    <div class="card card-custom">
+        <div class="card-header flex-wrap border-0 pt-6 pb-0">
+            <div class="card-title">
+                <h3 class="card-label">La list des Equivalent
+                    <div class="text-muted pt-2 font-size-sm">Equivalent product list</div>
+                </h3>
+            </div>
+            
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover" id="kt_datatable">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Referance</th>
+                    <th>Marque</th>
+                    <th>Stock</th>
+                    <th>Prix d'achat</th>
+                    <th>Prix de vente</th>
+                    <th>date</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                   
+                    @foreach($productE as $item)
+                    <tr>
+                        <td></td>
+                        <td>{{$item->reference}}</td>
+                        <td>{{$item->marque}}</td>
+                        <td>{{$item->stock}}</td>
+                        <td>{{$item->prix_achat}}</td>
+                        <td>{{$item->prix_vent}}</td>
+                        <td>{{$item->created_at}}</td>
+                        <td align="center">{{$item->type}}</td>
+                        <td align="right">1</td>
+                        <td nowrap></td>
+                    </tr>
+                    @endforeach
+             
+
+
+
+                 
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+  
+@endif
 
 @endsection
 
@@ -149,4 +198,5 @@
     {{-- page scripts --}}
     <script src="{{ asset('js/pages/crud/datatables/basic/basic.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+
 @endsection

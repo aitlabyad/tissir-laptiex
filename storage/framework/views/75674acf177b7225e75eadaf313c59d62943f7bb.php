@@ -16,7 +16,7 @@
         
         <?php echo e(Metronic::getGoogleFontsInclude()); ?>
 
-
+        
         
         <?php $__currentLoopData = config('layout.resources.css'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $style): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <link href="<?php echo e(config('layout.self.rtl') ? asset(Metronic::rtlCssPath($style)) : asset($style)); ?>" rel="stylesheet" type="text/css"/>
@@ -29,6 +29,8 @@
 
         
         <?php echo $__env->yieldContent('styles'); ?>
+
+        
     </head>
 
     <body <?php echo e(Metronic::printAttrs('body')); ?> <?php echo e(Metronic::printClasses('body')); ?>>
@@ -53,6 +55,7 @@
 
         
         <?php echo $__env->yieldContent('scripts'); ?>
+        <?php echo $__env->make('inc.notification', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     </body>
 </html>
