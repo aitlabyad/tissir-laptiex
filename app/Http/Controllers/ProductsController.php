@@ -14,7 +14,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $product = Product::orderBy('created_at','desc')->get();
+        $product = Product::orderBy('reference','desc')->get();
         $productE = array();
         return view('pages.datatables')->with('product', $product)->with('productE', $productE);
     }
@@ -99,7 +99,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        return view('pages.edit')->with('product',$product);
     }
 
     /**
@@ -111,7 +112,21 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         // Creat product
+         $ldate = date('Y-m-d');
+         $product = Product::find($id);
+ 
+         $product->reference =   $request->input('reference');
+         $product->updated_at =  $ldate;
+         $product->prix_achat =  $request->input('prixa');
+         $product->prix_vent =   $request->input('prixv');
+         $product->stock =       $request->input('stock');
+         $product->equivalent=   $request->input('equivalent');
+         $product->marque =      $request->input('marque');
+         $product->type =        $request->input('type');
+         $product->save();
+ 
+         return redirect('/Products')->with('success', 'Produit edite');
     }
 
     /**
@@ -122,7 +137,9 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id); 
+        $product->delete();
+        return redirect('/Products')->with('success', 'Produit Suprimer');
     }
     /**
      * Remove the specified resource from storage.

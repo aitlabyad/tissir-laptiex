@@ -10,12 +10,12 @@
 	<div class="card-header">
 		<div class="card-title">
 			<h3 class="card-label">
-				Ajouter un nouveau produit<i class="mr-2"></i>
+				Edite produit<i class="mr-2"></i>
 				<small class=""> Produit</small>
 			</h3>
         </div>
-        
-        {!! Form::open(['action' => 'ProductsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+        {!! Form::open(['action' => ['ProductsController@update', $product->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+        {{ Form::hidden('_method', 'PUT')}}
 
 		<div class="card-toolbar">
 			
@@ -53,49 +53,49 @@
                         <div class="form-group row">
                             {{Form::label('title', '# Reference' ,['class' => 'col-3 col-form-label ', 'placeholder' => ''])}}
                             <div class="col-9">
-                            {{Form::text('reference', '', ['class' => 'form-control form-control-solid','placeholder' => ''])}}
+                            {{Form::text('reference', $product->reference, ['class' => 'form-control form-control-solid','placeholder' => ''])}}
                             </div>
                         </div>
 
                         <div class="form-group row">
                             {{Form::label('title', 'Prix d\'achate' ,['class' => 'col-3 col-form-label ', 'placeholder' => ''])}}
                             <div class="col-9">
-                            {{Form::text('prixa', '', ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
+                            {{Form::text('prixa', $product->prix_achat, ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            {{Form::label('title', 'Prix de vante' ,['class' => 'col-3 col-form-label ', 'placeholder' => ''])}}
+                            {{Form::label('title', 'Prix de vente' ,['class' => 'col-3 col-form-label ', 'placeholder' => ''])}}
                             <div class="col-9">
-                            {{Form::text('prixv', '', ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
+                            {{Form::text('prixv', $product->prix_vent, ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
                             </div>
                         </div>
 
                         <div class="form-group row">
                             {{Form::label('title', 'Type' ,['class' => 'col-3 col-form-label ', 'placeholder' => ''])}}
                             <div class="col-9">
-                            {{Form::text('type', '', ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
+                            {{Form::text('type', $product->type, ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
                             </div>
                         </div>
 
                         <div class="form-group row">
                             {{Form::label('title', 'Marque' ,['class' => 'col-3 col-form-label ', 'placeholder' => ''])}}
                             <div class="col-9">
-                            {{Form::text('marque', '', ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
+                            {{Form::text('marque', $product->marque, ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
                             </div>
                         </div>
 
                         <div class="form-group row">
                             {{Form::label('title', 'equivalent' ,['class' => 'col-3 col-form-label ', 'placeholder' => ''])}}
                             <div class="col-9">
-                            {{Form::text('equivalent', '', ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
+                            {{Form::text('equivalent', $product->equivalent, ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
                             </div>
                         </div>
 
                         <div class="form-group row">
                             {{Form::label('title', 'stock' ,['class' => 'col-3 col-form-label ', 'placeholder' => ''])}}
                             <div class="col-9">
-                            {{Form::text('stock', '', ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
+                            {{Form::text('stock', $product->stock, ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
                             </div>
                         </div>
                 
@@ -113,6 +113,40 @@
 								</div>
 							</div>
                         </div>
+                        {!! Form::close() !!}
+
+
+                        <div class="card card-custom gutter-b bg-light-danger">
+                            {!! Form::open(['action'=> ['ProductsController@destroy',$product->id] , 'method' => 'POST'])!!}
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                                    <div class="d-flex flex-column mr-5">
+                                        <a href="#" class="h4 text-dark text-hover-primary mb-5">
+                                            Supprimer
+                                        </a>
+                                        <p class="text-dark-50">
+                                            Cette action est irréversible.
+                                        </p>
+                                    </div>
+                                    <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                                        {{ Form::hidden('_method' , 'DELETE')}}
+                                    {{ Form::submit('Supprimer',['class'=>'btn font-weight-bolder text-uppercase btn-danger py-4 px-6'])}}
+                                    </div>
+                                   
+                                </div>
+                            </div>
+
+                            {!!Form::close()!!}
+                        </div>
+
+
+                      
+                            
+
+                              
+                             
+                       
+               
                         
 
 					</div>
@@ -127,7 +161,7 @@
     
 
 
-<!--close form here-->{!! Form::close() !!}
+<!--close form here-->
 
 </div>
  
