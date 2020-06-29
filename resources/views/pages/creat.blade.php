@@ -93,11 +93,13 @@
                         </div>
 
                         <div class="form-group row">
-                            {{Form::label('title', 'stock' ,['class' => 'col-3 col-form-label ', 'placeholder' => ''])}}
-                            <div class="col-9">
-                            {{Form::text('stock', '', ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
+                            {{Form::label('title', 'stock' ,['class' => 'col-form-label text-left col-lg-3 col-sm-12', 'placeholder' => ''])}}
+                            <div class="col-lg-4 col-md-9 col-sm-12">
+                            {{Form::text('stock', '', ['class' => 'form-control form-control-solid', 'placeholder' => '' ,'id' => 'kt_touchspin_1_validate'])}}
                             </div>
                         </div>
+                         
+                        <!--end::Form-->
                 
 					
 						
@@ -139,7 +141,61 @@
 
 {{-- Scripts Section --}}
 @section('scripts')
+    <script>
 
+
+"use strict";
+// Class definition
+var KTKBootstrapTouchspin = function() {
+
+	// Private functions
+	var validationStateDemos = function() {
+		// validation state demos
+		$('#kt_touchspin_1_validate').TouchSpin({
+			buttondown_class: 'btn btn-secondary',
+			buttonup_class: 'btn btn-secondary',
+
+			min: -1000000000,
+			max: 1000000000,
+			stepinterval: 50,
+			maxboostedstep: 10000000,
+			prefix: ''
+		});
+
+		// vertical buttons with custom icons:
+		$('#kt_touchspin_2_validate').TouchSpin({
+			buttondown_class: 'btn btn-secondary',
+			buttonup_class: 'btn btn-secondary',
+
+			min: 0,
+			max: 100,
+			step: 1,
+			decimals: 0,
+			boostat: 5,
+			maxboostedstep: 10,
+		});
+
+		$('#kt_touchspin_3_validate').TouchSpin({
+			buttondown_class: 'btn btn-secondary',
+			buttonup_class: 'btn btn-secondary',
+			verticalbuttons: true,
+			verticalupclass: 'ki ki-plus',
+			verticaldownclass: 'ki ki-minus'
+		});
+	}
+
+	return {
+		// public functions
+		init: function() {
+			validationStateDemos();
+		}
+	};
+}();
+
+jQuery(document).ready(function() {
+	KTKBootstrapTouchspin.init();
+});
+    </script>
 
     <script src="{{ asset('js/pages/widgets.js') }}" type="text/javascript"></script>
 

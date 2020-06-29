@@ -86,6 +86,7 @@
                     <th>Type</th>
                     <th>Status</th>
                     <th>Actions</th>
+                  
                 </tr>
                 </thead>
                 <tbody>
@@ -115,6 +116,7 @@
 
                         </td>
                         <td nowrap>
+                            
 
 
                             <a href="http://tissir.cc/Products/<?php echo e($item->id); ?>/edit" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">
@@ -133,6 +135,7 @@
                           
 
                         </td>
+                       
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php else: ?>
@@ -183,6 +186,7 @@
                     <th>Type</th>
                     <th>Status</th>
                     <th>Actions</th>
+                    
                 </tr>
                 </thead>
                 <tbody>
@@ -200,6 +204,7 @@
                         <td align="center"><?php echo e($item->type); ?></td>
                         <td align="right">1</td>
                         <td nowrap></td>
+
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
              
@@ -225,6 +230,62 @@
 
 
 <?php $__env->startSection('scripts'); ?>
+
+<script>
+
+
+    "use strict";
+    // Class definition
+    var KTKBootstrapTouchspin = function() {
+    
+        // Private functions
+        var validationStateDemos = function() {
+            // validation state demos
+            $('#kt_touchspin_1_validate').TouchSpin({
+                buttondown_class: 'btn btn-secondary',
+                buttonup_class: 'btn btn-secondary',
+    
+                min: -1000000000,
+                max: 1000000000,
+                stepinterval: 50,
+                maxboostedstep: 10000000,
+                prefix: ''
+            });
+    
+            // vertical buttons with custom icons:
+            $('#kt_touchspin_2_validate').TouchSpin({
+                buttondown_class: 'btn btn-secondary',
+                buttonup_class: 'btn btn-secondary',
+    
+                min: 0,
+                max: 100,
+                step: 1,
+                decimals: 0,
+                boostat: 5,
+                maxboostedstep: 10,
+            });
+    
+            $('#kt_touchspin_3_validate').TouchSpin({
+                buttondown_class: 'btn btn-secondary',
+                buttonup_class: 'btn btn-secondary',
+                verticalbuttons: true,
+                verticalupclass: 'ki ki-plus',
+                verticaldownclass: 'ki ki-minus'
+            });
+        }
+    
+        return {
+            // public functions
+            init: function() {
+                validationStateDemos();
+            }
+        };
+    }();
+    
+    jQuery(document).ready(function() {
+        KTKBootstrapTouchspin.init();
+    });
+        </script>
     
     <script src="<?php echo e(asset('plugins/custom/datatables/datatables.bundle.js')); ?>" type="text/javascript"></script>
 

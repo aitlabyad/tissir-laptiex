@@ -167,7 +167,7 @@ return [
 
     // Footer
     'footer' => [
-        'width' => 'fluid', // fluid, fixed
+        'width' => 'fluid',       // fluid, fixed
         'fixed' => false
     ],
 
