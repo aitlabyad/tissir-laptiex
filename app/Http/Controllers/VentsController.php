@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use DB;
 
 
 class VentsController extends Controller
@@ -37,10 +38,9 @@ class VentsController extends Controller
      */
     public function store(Request $request)
     {
-     
-       
-        return view('pages.panier');
-
+        
+        $users = DB::table('product')->whereIn('id', $_POST['selected'])->get();
+        return view('pages.panier')->with('product', $users);
      
      
     }
@@ -53,7 +53,7 @@ class VentsController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -67,14 +67,44 @@ class VentsController extends Controller
         //
     }
 
+
+     /**
+     * Show the form for editing the specified resource.
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function sell(Request $request)
+    {
+
+      
+        $i=0;
+        
+
+
+       
+
+
+
+        if(isset($_POST['sel']) ){
+           foreach($_POST['sel'] as $item){
+            $product = Product::find($item);
+            $product->stock = $product->stock-$_POST['Quantite'][$i];
+            $product->save();
+            $i++;
+           } 
+        }
+        return redirect('/Products')->with('success', 'transaction réussiee');
+    
+    }
+
+
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
     }

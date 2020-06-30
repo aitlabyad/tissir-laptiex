@@ -99,8 +99,8 @@
                         <td><?php echo e($item->reference); ?></td>
                         <td><?php echo e($item->marque); ?></td>
                         <td><?php echo e($item->stock); ?></td>
-                        <td><?php echo e($item->prix_achat); ?></td>
-                        <td><?php echo e($item->prix_vent); ?></td>
+                        <td><?php echo e(bcdiv($item->prix_achat, 1, 2)); ?> MAD</td>
+                        <td><?php echo e(bcdiv($item->prix_vent, 1, 2)); ?> MAD</td>
                         <td><?php echo e(date('d-m-Y', strtotime($item->created_at))); ?></td>
                         <td align="center"><?php echo e($item->type); ?></td>
                         <td align="center">

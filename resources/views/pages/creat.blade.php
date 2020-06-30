@@ -95,7 +95,8 @@
                         <div class="form-group row">
                             {{Form::label('title', 'stock' ,['class' => 'col-form-label text-left col-lg-3 col-sm-12', 'placeholder' => ''])}}
                             <div class="col-lg-4 col-md-9 col-sm-12">
-                            {{Form::text('stock', '', ['class' => 'form-control form-control-solid', 'placeholder' => '' ,'id' => 'kt_touchspin_1_validate'])}}
+								{{Form::text('stock', '', ['class' => 'form-control form-control-solid', 'placeholder' => ''])}}
+              
                             </div>
                         </div>
                          

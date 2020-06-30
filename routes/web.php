@@ -30,3 +30,4 @@ Route::resource('Products', 'ProductsController');
 Route::post('/Products/look', 'ProductsController@look');
 
 Route::resource('Vents', 'VentsController');
+Route::post('/Vents/sell', 'VentsController@sell');

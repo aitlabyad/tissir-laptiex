@@ -95,8 +95,8 @@
                         <td>{{$item->reference}}</td>
                         <td>{{$item->marque}}</td>
                         <td>{{$item->stock}}</td>
-                        <td>{{$item->prix_achat}}</td>
-                        <td>{{$item->prix_vent}}</td>
+                        <td>{{ bcdiv($item->prix_achat, 1, 2)}} MAD</td>
+                        <td>{{ bcdiv($item->prix_vent, 1, 2)}} MAD</td>
                         <td>{{date('d-m-Y', strtotime($item->created_at))}}</td>
                         <td align="center">{{$item->type}}</td>
                         <td align="center">
