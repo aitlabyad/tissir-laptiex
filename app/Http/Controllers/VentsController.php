@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Vent;
 use DB;
 
 
@@ -76,15 +77,33 @@ class VentsController extends Controller
     public function sell(Request $request)
     {
 
-      
+        $total =0;
+        $profit = 0;
+
         $i=0;
-        
+        $ldate = date('Y-m-d');
+        foreach($_POST['price'] as $item){
+            $total +=$item*$_POST['Quantite'][$i];
+            $profit += ($item- $_POST['priceA'][$i]) * $_POST['Quantite'][$i] ;
+
+            $i++;
+        }
+
+        $vent = new Vent;
+        $vent->client = 'default';
+        $vent->total = $total;
+        $vent->profit = $profit;
+        $vent->updated_at =  $ldate;
+        $vent->created_at =  $ldate;
+        $vent->save();
 
 
+
+
+
+
+        $i=0;
        
-
-
-
         if(isset($_POST['sel']) ){
            foreach($_POST['sel'] as $item){
             $product = Product::find($item);
@@ -93,6 +112,7 @@ class VentsController extends Controller
             $i++;
            } 
         }
+        // return '<p>'.$profit.'</p>';
         return redirect('/Products')->with('success', 'transaction réussiee');
     
     }

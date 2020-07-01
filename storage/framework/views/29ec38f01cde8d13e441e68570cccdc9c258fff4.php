@@ -58,6 +58,8 @@
                         <td>
                             
                             <span class="text-dark-75 font-weight-bolder d-block font-size-lg"><?php echo e($item->prix_achat); ?></span>
+                            <?php echo e(Form::hidden('priceA[]', $item->prix_achat, ['class' => ''])); ?>
+
                             <span class="text-muted font-weight-bold">MAD</span>
                         </td>
                         <td>
@@ -68,7 +70,7 @@
                             <span class="text-muted font-weight-bold">MAD</span>
                         </td>
                         <td>
-                            <?php echo e(Form::text('Quantite[]', '', ['class' => 'qt text-dark-75 f d-block font-size-lg', 'placeholder'=> '1'])); ?>
+                            <?php echo e(Form::text('Quantite[]', '1', ['class' => 'qt text-dark-75 f d-block font-size-lg', 'placeholder'=> '1'])); ?>
 
                             <span class="text-muted font-weight-bold">  &nbsp;</span>
                            
@@ -101,6 +103,7 @@
             <h3 class="font-weight-bolder">TOTAL </h3>
             
             <div class="text-dark-50 display-2 mt-2" ><span id='tot'>0</span><span> MAD</span></div>
+        
            
            
         </div>
@@ -143,7 +146,7 @@ function get(){
         sum += Number(ek[i])  * Number(el[i]) ;
 }
 
-
+   
     $("#tot").text(sum);
 };
 

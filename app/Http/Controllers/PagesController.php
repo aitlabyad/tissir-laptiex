@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\Vent;
+use DB;
 
 class PagesController extends Controller
 {
@@ -11,7 +14,14 @@ class PagesController extends Controller
         $page_title = 'Dashboard';
         $page_description = 'Some description for the page';
 
-        return view('pages.dashboard', compact('page_title', 'page_description'));
+
+        $total = DB::table('vents')->sum('total');
+        $profit = DB::table('vents')->sum('profit');
+
+        $count = Product::where('stock', '<', 1)->count();
+
+        return view('pages.dashboard', compact('page_title', 'page_description',))->with('total',$total)->with('profit',$profit)->with('count',$count);
+        // return view('pages.dashboard', compact('page_title', 'page_description',))->with('data', ['total' => $total,'profit' => $profit]);
     }
 
     /**
