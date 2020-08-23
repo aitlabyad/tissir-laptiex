@@ -31,3 +31,8 @@ Route::post('/Products/look', 'ProductsController@look');
 
 Route::resource('Vents', 'VentsController');
 Route::post('/Vents/sell', 'VentsController@sell');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
